@@ -1,0 +1,27 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+	<form action="" method="post">
+		<div>
+			아이디 : <input type="text" maxlength="12" placeholder="4~12자의 영문소문자, 숫자"/>
+		</div>
+		<div>
+			비밀번호 : <input type="password" placeholder="4~12자의 영문대소문자, 숫자, 특수기호(!,@,#,$,%,^,&,*)"/>
+		</div>
+		<div>
+			비밀번호 확인 : <input type="password" />
+		</div>
+		<div>
+			이름 : <input type="text" maxlength="8" placeholder="2~8자의 한글"/>
+		</div>
+	</form>
+	<button>가입</button>
+	<button>취소</button>
+
+</body>
+</html>
