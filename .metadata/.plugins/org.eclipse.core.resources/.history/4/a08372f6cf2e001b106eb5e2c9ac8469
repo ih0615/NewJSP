@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/plain; charset=UTF-8"%>
+
+<%
+	boolean isTrue = (boolean) request.getAttribute("isTrue");
+String msg = (String) (String) request.getAttribute("msg");
+%>
+
+
+
+<%
+	if (isTrue) {
+%>
+{ "isTrue" : "<%=isTrue%>"}
+<%
+	} else {
+%>
+{ "isTrue" : "<%=isTrue%>"}
+<%
+	}
+%>
+
+
+
+

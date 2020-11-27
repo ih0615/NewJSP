@@ -1,0 +1,5 @@
+<%@ page language="java" contentType="text/plain; charset=UTF-8"%>
+<%
+	boolean isTrue = (boolean)request.getAttribute("isTrue");
+	String msg = (String) request.getAttribute("msg");
+%>

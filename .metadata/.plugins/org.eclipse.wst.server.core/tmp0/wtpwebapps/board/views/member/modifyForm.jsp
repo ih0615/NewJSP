@@ -1,0 +1,46 @@
+<%@page import="board.member.vo.MemberVo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보 수정</title>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script>
+	function modify() {
+		var name = $('#name');
+		if (!name) {
+			alert("이름을 입력해 주세요");
+			$('#name').focus();
+			return;
+		}
+		var regExp = new RegExp("^[가-힣]{2,8}$", "g");
+		if (regExp.exec(name.val()) == null) {
+			alert("잘못된 이름 형식입니다.");
+			name.val('');
+			name.focus();
+			return;
+		}
+		$('#mrform').submit();
+	}
+</script>
+</head>
+<body>
+	<%
+		MemberVo memberVo = (MemberVo) request.getAttribute("memberVo");
+	String id = memberVo.getId();
+	String name = memberVo.getName();
+	%>
+	<form action="/modifyMemberProc.do" method="post" id="mrform">
+		<div>
+			아이디 :
+			<%=memberVo.getId()%>
+		</div>
+		<div>
+			이름 : <input type="text" maxlength="8" placeholder="2~8자의 한글" id="name" name="name" value="<%=memberVo.getName()%>" />
+		</div>
+	</form>
+	<button onclick="modify()">수정</button>
+	<button onclick="location.href='/'">취소</button>
+</body>
+</html>

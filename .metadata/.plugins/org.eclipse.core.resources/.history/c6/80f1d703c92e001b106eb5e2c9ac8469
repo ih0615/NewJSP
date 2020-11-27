@@ -1,0 +1,24 @@
+<%@ page language="java" contentType="text/plain; charset=UTF-8"%>
+
+<%
+	boolean isTrue = (boolean) request.getAttribute("isTrue");
+String msg = (String) (String) request.getAttribute("msg");
+%>
+
+
+
+<%
+	if (isTrue) {
+%>
+{ "isTrue" : "<%=isTrue%>" ,"msg" : "중복된 아이디입니다." }
+<%
+	} else {
+%>
+{ "isTrue" : "<%=isTrue%>" ,"msg" : "사용할 수 있는 아이디 입니다." }
+<%
+	}
+%>
+
+
+
+

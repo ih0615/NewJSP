@@ -1,0 +1,32 @@
+package board.member.action;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import common.Action;
+import common.ActionForward;
+import common.LoginManager;
+
+public class LeaveAction implements Action {
+
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		LoginManager lm = LoginManager.getInstance();
+		String id = lm.getMemberId(session);
+		ActionForward forward = new ActionForward();
+		if (id == null) {
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
+			out.close();
+			return null;
+		}
+
+		forward.setPath("/views/member/leaveForm.jsp");
+		return forward;
+	}
+}

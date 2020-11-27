@@ -1,0 +1,46 @@
+package board.member.action;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import board.member.service.MemberService;
+import board.member.vo.MemberVo;
+import common.Action;
+import common.ActionForward;
+import common.LoginManager;
+
+public class UpdateMemberAction implements Action{
+	
+	@Override
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
+		LoginManager lm = LoginManager.getInstance();
+		String id = lm.getMemberId(session);
+		ActionForward forward = new ActionForward();
+		MemberVo memberVo = new MemberVo();
+		memberVo.setId(id);
+		MemberService svc = new MemberService();
+		boolean checkId = svc.checkId(memberVo);
+		if(id!=null) {
+			forward.setPath("/");
+			forward.setRedirect(true);
+			return forward;
+		}
+		else if(checkId) {
+			forward.setPath("/views/member/updateMemberForm.jsp");
+			return forward;	
+		}
+		else{
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('잘못된 접근입니다.');location.href='/';</script>");
+			out.close();
+			return null;
+		}
+		
+		
+	}
+}

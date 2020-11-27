@@ -1,0 +1,111 @@
+package board.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import board.member.vo.MemberVo;
+
+import static common.jdbcUtil.close;
+
+public class MemberDao {
+	private Connection con;
+
+	private MemberDao() {
+
+	}
+
+	private static class LazyHolder {
+		private static final MemberDao INSTANCE = new MemberDao();
+	}
+
+	public static MemberDao getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	public void setConnection(Connection con) {
+		this.con = con;
+	}
+
+	public int registerMember(MemberVo vo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("insert into member(sq,id,pwd,name) values(member_sq.nextval, ?,?,?)");
+			pstmt.setString(1, vo.getId());
+			pstmt.setString(2, vo.getPwd());
+			pstmt.setString(3, vo.getName());
+			count = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return count;
+	}
+	
+	public int checkId(MemberVo vo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		try {
+			pstmt = con.prepareStatement("select count(*) from member where id=?");
+			pstmt.setString(1, vo.getId());
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return count;
+	}
+	
+	public MemberVo getMemberLoginInfo(String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo vo = null;
+		try {
+			pstmt = con.prepareStatement("select id, pwd from member where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo = new MemberVo();
+				vo.setId(rs.getString("id"));
+				vo.setPwd(rs.getString("pwd"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return vo;
+	}
+	
+	public MemberVo getLoadMemberById(String id) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo vo = null;
+		try {
+			pstmt = con.prepareStatement("select id, pwd, name from member where id=?");
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo = new MemberVo();
+				vo.setId(rs.getString("id"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setName(rs.getString("name"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		return vo;
+	}
+}

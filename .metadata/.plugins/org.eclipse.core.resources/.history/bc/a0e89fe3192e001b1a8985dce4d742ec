@@ -1,0 +1,40 @@
+package board.member.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+
+import board.member.vo.MemberVo;
+
+import static common.jdbcUtil.close;
+
+public class MemberDao {
+	private Connection con;
+
+	private MemberDao() {
+
+	}
+
+	private static class LazyHolder {
+		private static final MemberDao INSTANCE = new MemberDao();
+	}
+
+	public static MemberDao getInstance() {
+		return LazyHolder.INSTANCE;
+	}
+
+	public void setConnection(Connection con) {
+		this.con = con;
+	}
+
+	public int registerMember(MemberVo vo) {
+		PreparedStatement pstmt = null;
+		int count = 0;
+		try {
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+	}
+}

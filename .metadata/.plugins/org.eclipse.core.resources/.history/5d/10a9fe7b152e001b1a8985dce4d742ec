@@ -1,0 +1,18 @@
+package common;
+
+import java.sql.Connection;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+
+public class jdbcUtil {
+	public static Connection getConnection() {
+		Connection con = null;
+		try {
+			Context initCtx = new InitialContext();
+			Context envCtx = (Context) initCtx.lookup("java:comp/env")
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

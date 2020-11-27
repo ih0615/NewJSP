@@ -1,0 +1,5 @@
+package board.member.service;
+
+public class MemberService {
+
+}

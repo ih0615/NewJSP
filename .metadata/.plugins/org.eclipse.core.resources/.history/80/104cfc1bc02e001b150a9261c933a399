@@ -1,0 +1,4 @@
+<%@ page language="java" contentType="text/plain; charset=UTF-8"%>
+<%
+	boolean isDuplicated = (boolean)request.getAttribute("isDuplicatedId");
+%>

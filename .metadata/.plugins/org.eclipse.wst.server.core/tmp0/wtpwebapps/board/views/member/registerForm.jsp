@@ -6,7 +6,45 @@
 <title>회원가입</title>
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script>
+	/* {"id" : "kiki","list" : {"pwd" : "1111"}} */
+
+	var isChecked = false;
+
+	function initCheckId() {
+		isChecked = false;
+	}
+
+	function checkId() {
+		initCheckId();
+		var id = $('#id');
+		$.ajax({
+			url : "/checkId.ajax",
+			type : "post",
+			dataType : "json",
+			data : {
+				id : id.val()
+			},
+			error : function() {
+				alert("통신실패");
+			},
+			success : function(data) {
+				if (data.isTrue == 'true') {
+					$('#idMessage').text('사용할 수 없는 아이디입니다.')
+					isChecked = false;
+				} else {
+					$('#idMessage').text('사용할 수 있는 아이디입니다.')
+					isChecked = true;
+				}
+			}
+
+		});
+	}
+
 	function join() {
+		if (!isChecked) {
+			alert("아이디 중복 확인을 해주세요.");
+			return;
+		}
 		var id = $('#id').val();
 		var pwd = $('#pwd').val();
 		var pwd_confirm = $('#pwd_confirm').val();
@@ -68,16 +106,16 @@
 <body>
 	<form action="/memberRegisterProc.do" method="post" id="mrform">
 		<div>
-			아이디 : <input type="text" maxlength="12" placeholder="4~12자의 영문소문자, 숫자" id="id" name="id" />
+			아이디 : <input type="text" maxlength="12" placeholder="4~12자의 영문소문자, 숫자" id="id" name="id" oninput="checkId()" /> <span id="idMessage"></span>
 		</div>
 		<div>
-			비밀번호 : <input type="password" placeholder="4~12자의 영문대소문자, 숫자, 특수기호(!,@,#,$,%,^,&,*)" id="pwd" name="pwd"/>
+			비밀번호 : <input type="password" placeholder="4~12자의 영문대소문자, 숫자, 특수기호(!,@,#,$,%,^,&,*)" id="pwd" name="pwd" />
 		</div>
 		<div>
-			비밀번호 확인 : <input type="password" id="pwd_confirm" name="pwdc"/>
+			비밀번호 확인 : <input type="password" id="pwd_confirm" name="pwdc" />
 		</div>
 		<div>
-			이름 : <input type="text" maxlength="8" placeholder="2~8자의 한글" id="name" name="name"/>
+			이름 : <input type="text" maxlength="8" placeholder="2~8자의 한글" id="name" name="name" />
 		</div>
 	</form>
 	<button onclick="join()">가입</button>

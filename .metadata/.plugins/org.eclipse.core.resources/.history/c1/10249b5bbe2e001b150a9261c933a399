@@ -1,0 +1,5 @@
+package board.member.action;
+
+public class AjaxCheckIdAction {
+
+}

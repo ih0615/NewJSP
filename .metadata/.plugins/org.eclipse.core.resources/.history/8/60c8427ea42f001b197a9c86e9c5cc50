@@ -1,0 +1,26 @@
+<%@page import="board.member.vo.MemberVo"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원정보 수정</title>
+</head>
+<body>
+<%
+MemberVo memberVo = (MemberVo)request.getAttribute("memberVo");
+String id = memberVo.getId();
+String name = memberVo.getName();
+%>
+	<form action="modifyMemberProc.do" method="post">
+		<div>
+			아이디 : <%=memberVo.getId()%>
+		</div>
+		<div>
+			이름 <input type="text" value="<%=name%>"/>
+		</div>
+	</form>
+	<button>수정</button>
+	<button onclick="location.href='/'">취소</button>
+</body>
+</html>

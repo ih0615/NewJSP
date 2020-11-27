@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<Resource
+			name="jdbc/oracle"
+			auth="Container"
+			driverClassName="oracle.jdbc.driver.OracleDriver"
+			type="javax.sql.DataSource"
+			url="jdbc:oracle:thin:@127.0.0.1:1521:orcl"
+			username="kbtest"
+			password="1111"
+			maxActive="50"
+	/>
+</Context>

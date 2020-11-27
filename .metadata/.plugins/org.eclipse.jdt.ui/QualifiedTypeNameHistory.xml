@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="common.Action"/>
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="common.ActionForward"/>
     <fullyQualifiedTypeName name="board.board.action.HomeAction"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
     <fullyQualifiedTypeName name="board.member.action.MemberRegisterAction"/>
+    <fullyQualifiedTypeName name="board.member.action.AjaxCheckIdAction"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="common.Action"/>
+    <fullyQualifiedTypeName name="board.member.action.LoginAction"/>
+    <fullyQualifiedTypeName name="board.member.action.LoginProcAction"/>
+    <fullyQualifiedTypeName name="board.member.service.MemberService"/>
+    <fullyQualifiedTypeName name="common.BCrypt"/>
+    <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+    <fullyQualifiedTypeName name="common.LoginManager"/>
+    <fullyQualifiedTypeName name="java.lang.String"/>
+    <fullyQualifiedTypeName name="board.member.action.LogoutAction"/>
+    <fullyQualifiedTypeName name="board.member.action.UpdateMemberAction"/>
+    <fullyQualifiedTypeName name="board.member.action.ModifyMemberAction"/>
+    <fullyQualifiedTypeName name="board.member.action.ModifyMemberProcAction"/>
+    <fullyQualifiedTypeName name="common.RegExp"/>
+    <fullyQualifiedTypeName name="board.member.action.LeaveAction"/>
+    <fullyQualifiedTypeName name="board.member.action.LeaveProcAction"/>
+    <fullyQualifiedTypeName name="board.member.vo.MemberVo"/>
 </qualifiedTypeNameHistroy>

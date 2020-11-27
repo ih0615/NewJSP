@@ -9,7 +9,7 @@ import common.ActionForward;
 public class HomeAction implements Action {
 
 	@Override
-	public ActionForward excute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		forward.setPath("/views/index.jsp");
 		return forward;
